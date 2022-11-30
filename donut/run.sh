@@ -59,6 +59,8 @@ for i in range(250):
     A += 0.08
     B += 0.03" > donut.py
 
-while (true) {
+while :
+do
     python3 donut.py
-}
+done
+
