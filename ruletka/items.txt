@@ -1,3 +1,4 @@
+nula
 jedna
 dva
 tri
@@ -6,3 +7,4 @@ pet
 sest
 sedm
 osm
+devet

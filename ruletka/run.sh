@@ -4,7 +4,7 @@
 ###############################################
 padding=2
 rouletteSize=60
-itemsFile=items.txt
+itemsFile="items.txt"
 ###############################################
 
 function max() {
@@ -36,11 +36,11 @@ do
   read user
   if [ -z $user ] && (( $i == 0 )); then
     loaded=1
-    str="`cat $itemsFile`"
-    if [ -z $str ]; then
-      echo "$itemsFile soubor nebyl nalezen"
-      exit 2
+    if [ -f $itemsFile ]; then
+      echo "Žádní předchozí soutěžící nebyli nalezeni"
+      exit 1
     fi
+    str="`cat $itemsFile`"
     items=(${str// / })
     break
   elif [ -z $user ]; then
@@ -52,10 +52,12 @@ done
 ###############################################
 
 if (( $loaded == 0 )); then
-  rm items.txt
+  if [ -f $itemsFile ]; then
+    rm $itemsFile
+  fi
   for item in ${items[@]}
   do
-    echo $item >> "items.txt"
+    echo $item >> $itemsFile
   done
 fi
 
